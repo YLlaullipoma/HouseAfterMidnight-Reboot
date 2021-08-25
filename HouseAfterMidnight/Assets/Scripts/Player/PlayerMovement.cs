@@ -4,23 +4,22 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
 
+    [Header("References")]
     public CharacterController characterController;
+    public Transform grounChecker;
+    public LayerMask groundMask;
 
-    private float xMovement;
-    private float zMovement;
+    [Header("Atributes")]
 
     public float speed = 8f;
     public float gravity;
     public float checkerRadious;
     public float jumpForce;
-
-    private bool isGrounded;
-
-    public Transform grounChecker;
-
-    public LayerMask groundMask;
-
     Vector3 velocity;
+    
+    private float zMovement;
+    private float xMovement;
+    private bool isGrounded;
 
     // Start is called before the first frame update
     void Start() {
@@ -49,6 +48,10 @@ public class PlayerMovement : MonoBehaviour {
 
         velocity.y += gravity * 1.5f * Time.deltaTime;
         characterController.Move(velocity * Time.deltaTime);
+    }
+
+    private void OnDrawGizmos() {
+        Gizmos.DrawSphere(grounChecker.position, checkerRadious);
     }
 
 }
