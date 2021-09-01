@@ -7,6 +7,7 @@ public class LanternShoot : MonoBehaviour {
     [Header("Reference")]
     public Light lanternLight;
     public Transform originRayPoint;
+    public Camera worldCam;
 
     [Header("Normal Lantern Atributes")]
     public float normalIntensity;
@@ -63,6 +64,7 @@ public class LanternShoot : MonoBehaviour {
         lanternLight.innerSpotAngle = shootInner;
         lanternLight.spotAngle = shootSpot;
         lanternLight.intensity = shootIntensity;
+        worldCam.fieldOfView = 30f;
         shooting = true;
     }
 
@@ -70,6 +72,7 @@ public class LanternShoot : MonoBehaviour {
         lanternLight.innerSpotAngle = normalInner;
         lanternLight.spotAngle = normalSpot;
         lanternLight.intensity = normalIntensity;
+        worldCam.fieldOfView = 60f;
         shooting = false;
     }
 

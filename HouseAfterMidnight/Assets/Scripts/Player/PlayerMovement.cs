@@ -21,6 +21,8 @@ public class PlayerMovement : MonoBehaviour {
     private float xMovement;
     private bool isGrounded;
 
+    public bool isMoving;
+
     // Start is called before the first frame update
     void Start() {
         
@@ -39,6 +41,13 @@ public class PlayerMovement : MonoBehaviour {
         zMovement = Input.GetAxis("Vertical");
 
         Vector3 move = transform.right * xMovement + transform.forward * zMovement;
+
+        if(zMovement != 0 || xMovement!= 0) {
+            isMoving = true;
+        }
+        else {
+            isMoving = false;
+        }
 
         characterController.Move(move*speed*Time.deltaTime);
 

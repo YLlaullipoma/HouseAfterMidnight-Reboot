@@ -6,6 +6,7 @@ public class PickBoxes : MonoBehaviour {
 
     public GameObject handsPoint;
     public GameObject picketObjetc = null;
+    public GameObject lanternHand;
 
     // Update is called once per frame
     void Update() {
@@ -13,10 +14,11 @@ public class PickBoxes : MonoBehaviour {
             if (Input.GetKey("r")) {
                 picketObjetc.GetComponent<Rigidbody>().useGravity = true;
                 picketObjetc.GetComponent<Rigidbody>().isKinematic = false;
-                picketObjetc.gameObject.transform.SetParent(null);
+                picketObjetc.transform.SetParent(null);
                 picketObjetc.transform.localScale = new Vector3(1f, 1f, 1f);
                 picketObjetc.GetComponent<BoxCollider>().enabled = true;
                 picketObjetc = null;
+                lanternHand.SetActive(true);
             }
         }
     }
@@ -24,6 +26,7 @@ public class PickBoxes : MonoBehaviour {
     private void OnTriggerStay(Collider other) {
         if(other.gameObject.tag == "Box") {
             if (Input.GetKey("e") && picketObjetc == null) {
+                lanternHand.SetActive(false);
                 other.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
                 other.GetComponent<Rigidbody>().useGravity = false;
                 other.GetComponent<Rigidbody>().isKinematic = true;

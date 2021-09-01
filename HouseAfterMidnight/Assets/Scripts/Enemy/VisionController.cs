@@ -6,6 +6,7 @@ public class VisionController : MonoBehaviour {
 
     private EstateMachine stMachine;
     private GameObject playerTransform;
+    private GettingLighting lighting;
 
     public Transform playerPos;
     
@@ -17,6 +18,7 @@ public class VisionController : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         stMachine = GetComponent<EstateMachine>();
+        lighting = GetComponent<GettingLighting>();
         playerTransform = GameObject.FindGameObjectWithTag("Player");
     }
 
@@ -41,16 +43,4 @@ public class VisionController : MonoBehaviour {
     public void EstadoTransformado() {
         stMachine.ActivarEstado(stMachine.estadoTransformando);
     }
-
-    /*
-    void OnTriggerStay(Collider col) {
-        if (col.gameObject.tag == "Player") {
-            stMachine.ActivarEstado(stMachine.estadoAlerta);
-        }
-    }*/
-
-    /*void OnDrawGizmos() {
-        Gizmos.color = Color.red;
-        Gizmos.DrawSphere(transform.position,visionRange);
-    }*/
 }
